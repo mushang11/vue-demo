@@ -21,15 +21,18 @@
       }
     },
     methods: {
+      // get the data
       getData () {
-        this.$http.get(``, [this.options]).then(res => {
+        this.$http.get(``).then(res => {
           console.log(res)
+          this.name = res
         }, (err) => {
           console.log(err)
         })
       },
+      // post the data
       postData () {
-        this.$http.post(``, [this.options]).then(res => {
+        this.$http.post(``, this.options).then(res => {
           console.log(res)
         }, (err) => {
           console.log(err)

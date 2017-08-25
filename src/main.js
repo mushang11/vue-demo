@@ -15,3 +15,10 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+this.$http.interceptors.push((resquest, next) => {
+  // 发送请求前的处理
+  next((response) => {
+     // 根据请求的状态 response 参数会返回给 successCallback 或者 errorCallBack
+    return response
+  })
+})

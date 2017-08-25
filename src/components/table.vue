@@ -8,6 +8,7 @@
     <span>{{now}}</span>
   </div>
     <vue-if></vue-if>
+    <loading v-bind:loadingText="loadText" v-bind:key="loadText"></loading>
   </div>
 
 </template>
@@ -15,13 +16,17 @@
 <script>
   /* eslint-disable key-spacing,no-trailing-spaces */
   import VueIf from './if.vue'
+  import Loading from './loading.vue'
 
   export default {
-    components: {VueIf},
+    components: {
+      Loading,
+      VueIf},
     name:'world',
     data () {
       return {
-        msg :'i am weiqiang'
+        msg :'i am weiqiang',
+        loadText:'加载中'
       }
     },
     methods:{
