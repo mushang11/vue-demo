@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="table">
     <div class="row">{{msg}}</div>
     <div class="row">{{msg}}</div>
@@ -6,12 +7,17 @@
     <div @click="check" class="button">test</div>
     <span>{{now}}</span>
   </div>
+    <vue-if></vue-if>
+  </div>
 
 </template>
 
 <script>
   /* eslint-disable key-spacing,no-trailing-spaces */
+  import VueIf from './if.vue'
+
   export default {
+    components: {VueIf},
     name:'world',
     data () {
       return {
