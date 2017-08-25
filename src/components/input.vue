@@ -10,7 +10,8 @@
     name: 'inputCopy',
     data () {
       return {
-        name: 'default'
+        name: 'default',
+        options: ''
       }
     },
     watch: {
@@ -18,17 +19,34 @@
         console.log(newVal)
         console.log(oldVal)
       }
+    },
+    methods: {
+      getData () {
+        this.$http.get(``, [this.options]).then(res => {
+          console.log(res)
+        }, (err) => {
+          console.log(err)
+        })
+      },
+      postData () {
+        this.$http.post(``, [this.options]).then(res => {
+          console.log(res)
+        }, (err) => {
+          console.log(err)
+        })
+      }
     }
   }
 </script>
 <style scoped="">
-  .input{
+  .input {
     display: inline-block;
     height: 30px;
     line-height: 30px;
     padding: 0 4px;
   }
-  .input:focus{
-    boder:1px solid #00ae6a;
+
+  .input:focus {
+    boder: 1px solid #00ae6a;
   }
 </style>
