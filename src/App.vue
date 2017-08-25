@@ -2,12 +2,21 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-view></router-view>
+    <span-copy v-bind:list="list" v-bind:key="list"></span-copy>
   </div>
 </template>
 
 <script>
+  import SpanCopy from './components/Span.vue'
+
 export default {
-  name: 'app'
+    components: {SpanCopy},
+    name: 'app',
+    data () {
+      return {
+        list: {id: '1'}
+      }
+    }
 }
 </script>
 

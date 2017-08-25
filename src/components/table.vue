@@ -3,7 +3,7 @@
     <div class="row">{{msg}}</div>
     <div class="row">{{msg}}</div>
     <div class="row">{{msg | showCase}}</div>
-    <div v-on:click="check">test</div>
+    <div @click="check" class="button">test</div>
     <span>{{now}}</span>
   </div>
 
@@ -47,5 +47,16 @@
   }
   .table .row{
     padding: 0 10px;
+  }
+  .button{
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #00ae6a;
+    color:#fff;
+    cursor: pointer;
   }
 </style>
