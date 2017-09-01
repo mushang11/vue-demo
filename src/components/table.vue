@@ -7,6 +7,8 @@
     <div @click="check" class="button">test</div>
     <span>{{now}}</span>
   </div>
+    <span-copy v-for="item in list" v-bind:list="item" v-bind:key="item"></span-copy>
+    <input-copy></input-copy>
     <vue-if></vue-if>
     <loading v-bind:loadingText="loadText" v-bind:key="loadText"></loading>
   </div>
@@ -17,16 +19,18 @@
   /* eslint-disable key-spacing,no-trailing-spaces */
   import VueIf from './if.vue'
   import Loading from './loading.vue'
+  import SpanCopy from './Span.vue'
+  import InputCopy from './input.vue'
 
   export default {
     components: {
-      Loading,
-      VueIf},
+      Loading, SpanCopy, InputCopy, VueIf},
     name:'world',
     data () {
       return {
         msg :'i am weiqiang',
-        loadText:'加载中'
+        loadText:'加载中',
+        list: [{id: '1'}, {id: '2'}, {id: '3'}]
       }
     },
     methods:{
