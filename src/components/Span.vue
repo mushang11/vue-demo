@@ -1,6 +1,7 @@
 <template>
   <div class="span">
     <span>{{list.id}}</span>
+    <span class="test">{{msg}}</span>
   </div>
 </template>
 
@@ -10,7 +11,7 @@
     props: ['list'],
     data () {
       return {
-        msg: 'test'
+        msg: '数组'
       }
     }
   }

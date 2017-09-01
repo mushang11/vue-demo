@@ -1,0 +1,207 @@
+.bucket {
+  tr {
+  color:blue;
+  }
+}
+
+.some-class:extend(.bucket tr){}
+.bucket {
+  tr & {
+  color:blue;
+  }
+}
+
+.some-class:extend(tr .bucket) {}
+
+
+.a.class,
+.class,
+.class.a,
+.class > .a{
+ color:blue;
+}
+.test:extend(.class){}
+
+link:hover:visited {
+  color:blue;
+}
+.selector:extend(link:hover:visited){
+
+}
+
+:nth-child(1n+3){
+ color:blue;
+}
+.child:extend(:nth-child(1n+3)){}
+
+[title=identifier]{
+ color:blue;
+}
+
+[title='identifier']{
+color:blue;
+}
+
+[title="identifier"]{
+color:blue;
+}
+
+.a.b.test,
+.test.c{
+  color:orange;
+}
+.test{
+&:hover{
+  orange:green;
+ }
+}
+
+.replacement:extend(.test all){}
+
+@variable: .bucket;
+@{variable} {
+color:blue;
+}
+
+.bucket{
+color:red
+}
+@{variable}:extend(.bucket){}
+@variable: .selector;
+
+
+@media print{
+.screenClass:extend(.selector){}
+.selector{
+ color:black;
+ }
+}
+
+.selector{
+ color:red;
+}
+
+@media screen {
+.selector {
+color:blue;
+}
+}
+
+
+@media screen {
+ .screenClass:extend(.selector){}
+ @media (min-width:1023px){
+ .selector{
+
+ color:blue;
+ }
+ }
+}
+
+
+.alert-info,
+.widget{
+}
+
+.alert:extend(.alert-info,.widget){}
+
+
+.animal{
+ background-color:black;
+ color:white
+}
+
+.bear{
+&:extend(.animal);
+background-color:brown;
+}
+
+.my-inline-block{
+  display:inline-block ;
+  font-size:0;
+}
+.thing1{
+&:extend(.my-inline-block);
+}
+.thing2{
+&:extend(.my-inline-block);
+}
+
+li.list >a {
+
+}
+
+button.list-style{
+&:extend(li.list>a);
+}
+
+
+.border-radius(@radius){
+-webkit-border-radius:@radius;
+-moz-border-radius:@radius;
+border-radius:@radius;
+}
+
+.mixin(){
+@size:in-mixin;
+@definedOnlyMixin:in-mixin;
+}
+.class{
+ margin:@size @definedOnlyMixin;
+ .mixin();
+}
+@size: globaly-defined-value;
+
+.loop(@counter) when (@counter >0) {
+.loop((@counter - 1));
+width:(10px * @counter);
+}
+div{
+.loop(5);}
+
+.generate-columns(12);
+
+.generate-columns(@n,@i:1) when(@i <= @n){
+.column-@{i} {
+ width:(@i * 100% / @n);
+}
+.generate-columns(@n,(@i + 1));
+}
+
+.mixin(){
+   transform+_:scale(2);
+}
+.myClass {
+ .mixin();
+ transform+_:rotate(15deg);
+}
+
+a{
+color:blue;
+&:hover{
+color:blue;}
+}
+
+.button{
+ &-ok{
+  background-image:url("ok.png");
+ }
+  &-cancel{
+   background-image:url("cancel.png");
+  }
+   &-confirm{
+    background-image:url("confirm.png");
+   }
+    &-fail{
+     background-image:url("fail.png");
+    }
+}
+
+
+
+
+
+
+
+
+

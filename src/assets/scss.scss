@@ -1,0 +1,148 @@
+
+
+.clear{
+  clear:both;
+}
+@mixin large-text{
+  font:{
+    family: Arial;
+    size:20px;
+    weight: bold;
+  }
+  color:#ff0000;
+}
+.page-title{
+  @include large-text;
+  padding: 4px;
+  margin-top: 4px;
+}
+
+@mixin clearfix{
+  display: inline-block;
+  &:after{
+    content: "";
+    display: block;
+    height: 0;
+    clear:both;
+    visibility: hidden;
+  }
+
+  * html & {
+    height: 1px;
+  }
+}
+.container{
+  @include clearfix;
+  background-color: #fff;
+}
+
+@mixin silly-links{
+  a{
+    color:blue;
+    background-color: red;
+  }
+}
+@include silly-links;
+
+
+@mixin compound{
+  @include highlighted-background;
+  @include header-text;
+}
+@mixin highlighted-background{
+  background-color: aliceblue;
+}
+@mixin header-text{
+  font-size:20px;
+}
+.demo{
+  @include compound;
+  text-align: center;
+  display: flex;
+}
+
+
+@mixin sexy-border($color,$width:1in){
+  border:{
+    color: $color;
+    width: $width;
+    style: dashed;
+  }
+}
+p{
+  @include sexy-border(blue,1in)
+}
+h1{
+  @include sexy-border(red)
+}
+@mixin  box-shadow($shadows...){
+  -moz-box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+  box-shadow: $shadows;
+}
+.shadows{
+  @include box-shadow(0px 4px 5px #666)
+}
+
+
+@mixin colors($text,$background,$border){
+  color: $text;
+  background-color: $background;
+  border-color:$border;
+}
+$values:#ff00ff,#ff00ff,#ff00ff;
+.primary{
+@include colors($values...)
+}
+
+
+$value-map:(text:#00ff00,background:#00ff00,border:#ff0000);
+.secondary{
+@include colors($value-map...)
+}
+
+@mixin apply-to-ie6-only{
+  * html{
+    @content;
+  }
+}
+
+@include apply-to-ie6-only{
+  #logo{
+    background-image: url("/logo.png");
+  }
+}
+
+$color:white;
+@mixin colors($color:blue){
+  background-color: $color;
+  @content;
+  border-color:$color;
+}
+.colors{
+  @include colors{color:$color}
+}
+
+@mixin smartphone($height:10px){
+  padding: 4px;
+  @content;
+}
+
+#sidebar {
+  $sidebar-width:300px;
+  width: $sidebar-width;
+  @include smartphone{
+    height: $sidebar-width/3;
+  }
+}
+
+$grid-width:40px;
+$gutter-width:10px;
+
+@function grid-width($n){
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar {
+  width: grid-width(5);
+}
